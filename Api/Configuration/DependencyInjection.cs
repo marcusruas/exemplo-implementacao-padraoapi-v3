@@ -25,19 +25,22 @@ namespace Api.Configuration
 
         public static void AdicionarPacotesFramework(this IServiceCollection services, IConfiguration configuration)
         {
-            var configuracoesTestes = configuration.GetSection("Tests").Get<ConfiguracoesTestes>();
+            string connectionStringTestes = configuration.GetConnectionString("Testes");
+            string connectionStringLogs = configuration.GetConnectionString("Logs");
+            var configuracoesLogs = new SQLLogsConfiguration(connectionStringLogs, "Logs_Livros");
 
             services.AdicionarMensageria();
             services.AdicionarAutenticacao();
-            AdicionarLogs(configuration, "Logs_Livros");
-            services.AdicionarTestes(configuracoesTestes);
+            AdicionarLogsSQL(configuracoesLogs);
+            services.AdicionarTestes(connectionStringTestes);
         }
 
         public static void AdicionarMiddlewares(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHealthChecks()
-                .AddSqlServer(configuration["SQLConfigurationLogs:ConnectionString"], name: "Banco de Logs")
-                .AddSqlServer(configuration["Tests:ConnectionString"], name: "Banco de Testes");
+                .AddSqlServer(configuration.GetConnectionString("Livros"), name: "Banco Principal")
+                .AddSqlServer(configuration.GetConnectionString("Logs"), name: "Banco de Logs")
+                .AddSqlServer(configuration.GetConnectionString("Testes"), name: "Banco de Testes");
 
             services.AddSwaggerGen(cnf =>
             {
