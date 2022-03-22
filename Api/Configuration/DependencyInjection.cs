@@ -6,14 +6,9 @@ using Microsoft.Extensions.Configuration;
 using static MandradeFrameworks.Logs.Configuration.LogsConfiguration;
 using MandradeFrameworks.Logs.Models;
 using MandradeFrameworks.Autenticacao.Configuration;
-using MandradeFrameworks.Tests.Models;
-using MandradeFrameworks.Tests.Configuration;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using HealthChecks.UI.Client;
-using Infrastructure.Livros;
 using Infrastructure.Livros.Repository;
 
 namespace Api.Configuration
@@ -25,23 +20,16 @@ namespace Api.Configuration
 
         public static void AdicionarPacotesFramework(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionStringTestes = configuration.GetConnectionString("Testes");
             string connectionStringLogs = configuration.GetConnectionString("Logs");
             var configuracoesLogs = new SQLLogsConfiguration(connectionStringLogs, "Logs_Livros");
 
             services.AdicionarMensageria();
             services.AdicionarAutenticacao();
             AdicionarLogsSQL(configuracoesLogs);
-            services.AdicionarTestes(connectionStringTestes);
         }
 
-        public static void AdicionarMiddlewares(this IServiceCollection services, IConfiguration configuration)
+        public static void AdicionarMiddlewares(this IServiceCollection services)
         {
-            services.AddHealthChecks()
-                .AddSqlServer(configuration.GetConnectionString("Livros"), name: "Banco Principal")
-                .AddSqlServer(configuration.GetConnectionString("Logs"), name: "Banco de Logs")
-                .AddSqlServer(configuration.GetConnectionString("Testes"), name: "Banco de Testes");
-
             services.AddSwaggerGen(cnf =>
             {
                 cnf.SwaggerDoc(VERSAO_API, new OpenApiInfo { Version = VERSAO_API, Title = NOME_API });
@@ -79,12 +67,6 @@ namespace Api.Configuration
             application.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            application.UseHealthChecks("/status", new HealthCheckOptions()
-            {
-                Predicate = _ => true,
-                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
 
             application.UseSwagger();

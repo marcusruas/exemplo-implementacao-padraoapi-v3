@@ -43,7 +43,7 @@ namespace Api
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AdicionarPacotesFramework(Configuration);
-            services.AdicionarMiddlewares(Configuration);
+            services.AdicionarMiddlewares();
             services.AdicionarRepositorios();
 
             services.AddDbContextSqlServer<LivrosContext>(Configuration, "Livros");
