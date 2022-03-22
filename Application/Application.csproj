@@ -9,7 +9,7 @@
     <PackageReference Include="MandradeFrameworks.Autenticacao" Version="1.0.0" />
     <PackageReference Include="MandradeFrameworks.Logs" Version="1.0.10" />
     <PackageReference Include="MandradeFrameworks.Mensagens" Version="1.0.0" />
-    <PackageReference Include="MandradeFrameworks.Repositorios" Version="1.0.18" />
+    <PackageReference Include="MandradeFrameworks.Repositorios" Version="1.0.21" />
     <PackageReference Include="MandradeFrameworks.Retornos" Version="1.0.2" />
     <PackageReference Include="MandradeFrameworks.SharedKernel" Version="1.0.12" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
