@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MandradeFrameworks.Autenticacao" Version="1.0.0" />
+    <PackageReference Include="MandradeFrameworks.Autenticacao" Version="1.0.1" />
     <PackageReference Include="MandradeFrameworks.Logs" Version="1.0.10" />
     <PackageReference Include="MandradeFrameworks.Mensagens" Version="1.0.0" />
     <PackageReference Include="MandradeFrameworks.Repositorios" Version="1.0.21" />

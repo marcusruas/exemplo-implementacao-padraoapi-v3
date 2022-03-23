@@ -65,7 +65,9 @@ namespace Api.Controllers.Livros
         // Método que realiza queries via Dapper. Esse método também utiliza logs.
         [HttpGet]
         [Route("{nome}/id")]
-        public async Task<RetornoApi<Guid>> ObterIdLivroPorNome(string nome) =>
-            await ProcessarSolicitacao(new ObterIdLivroPorNomeQuery(nome));
+        public async Task<RetornoApi<Guid>> ObterIdLivroPorNome(string nome)
+        {
+            return await ProcessarSolicitacao(new ObterIdLivroPorNomeQuery(nome));
+        }
     }
 }
