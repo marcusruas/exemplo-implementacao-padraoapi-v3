@@ -47,9 +47,6 @@ namespace Api
             services.AdicionarRepositorios();
 
             services.AddDbContextSqlServer<LivrosContext>(Configuration, "Livros");
-
-            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-
             services.AddMvc(options => options.AdicionarPacotesFramework());
         }
 
