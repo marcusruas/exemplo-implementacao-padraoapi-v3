@@ -10,7 +10,7 @@
     <PackageReference Include="MandradeFrameworks.Repositorios" Version="1.0.21" />
     <PackageReference Include="MandradeFrameworks.Retornos" Version="1.0.2" />
     <PackageReference Include="MandradeFrameworks.SharedKernel" Version="1.0.14" />
-    <PackageReference Include="MandradeFrameworks.Tests" Version="1.0.21" />
+    <PackageReference Include="MandradeFrameworks.Tests" Version="1.0.22" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.22" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="moq" Version="4.17.2" />
